@@ -1,0 +1,123 @@
+import java.util.Scanner;
+
+public class test {
+
+    public static void main(String[] args) {
+        System.out.println("Введите следующие пододные условия... ");
+
+        int tempirature = InTempirature(args);
+        int wind_speed = InWind(args);
+        int rain = InRain(args);
+
+        System.out.println("________Ввод закончен_________");
+
+        Advice(tempirature, rain, wind_speed);
+    }
+
+
+    public static int InTempirature(String[] args){
+        Scanner scan = new Scanner(System.in);
+        while (true){
+            System.out.print("Температура окружающей среды в градусах цельсия:  ");
+            String tempriature = scan.nextLine();
+            try{
+                Integer temp = Integer.parseInt(tempriature);
+                System.out.println("OK");
+                return temp;
+
+            } catch (NumberFormatException e){
+                System.out.println("Введены некорректные данные");
+            }
+        }
+    }
+    public static int InWind(String[] args){
+        Scanner scan = new Scanner(System.in);
+        while (true){
+            System.out.print("Скорость ветра в м/с:  ");
+            String wind_speed = scan.nextLine();
+            try{
+                Integer spd = Integer.parseInt(wind_speed);
+                System.out.println("OK");
+                return spd;
+
+            } catch (NumberFormatException e){
+                System.out.println("Введены некорректные данные");
+            }
+        }
+    }
+
+    public static int InRain(String[] args){
+        Scanner scan = new Scanner(System.in);
+        while (true){
+            System.out.println("Укажите, насколько сильный дождь:");
+            System.out.println("1 - нет");
+            System.out.println("2 - слабый");
+            System.out.println("3 - сильный");
+            String rain = scan.nextLine();
+            try{
+                Integer int_rain = Integer.parseInt(rain);
+                if (int_rain<4 & int_rain > 0){
+                    System.out.println("OK");
+                    return int_rain;
+                }
+                else if ( !(int_rain < 4 & int_rain > 0) ){
+                    System.out.println("Доступвые варианты: 1, 2 или 3!!! Введите снова:)");
+                    System.out.println("-------------------------------------------------");
+                }
+            } catch (NumberFormatException e){
+                System.out.println("Введены некорректные данные");
+            }
+        }
+    }
+
+    public static void Advice(int tempirature, int rain, int wind_speed){
+        if (tempirature < 0) {
+            if (rain > 1) {
+                if (wind_speed < 10) {
+                    System.out.println("Так это...Снег на улице:} Беги снеговика лепить, кожаный!");
+                    System.out.println("ИИИ это... Зимнюю курточку прихвати:)");
+                } else {
+                    System.out.println("В такую метель я б дома посидел :/");
+                }
+            } else {
+                if (wind_speed < 10) {
+                    System.out.println("Думаю, зимняя курта и шарфик тебе не помешают:)");
+                } else {
+                    System.out.println("Холодно шо пипец, так еще и ветер сильный, дядя! Рекламнй щит башка упадет, совсем мёртвй будешь(((");
+                }
+            }
+        }
+
+        if (tempirature > 0 & tempirature < 20){
+            if (rain > 1){
+                if (wind_speed < 10){
+                    System.out.println("На улице тепло, но думаю, стоит взять зонтик");
+                }else {
+                    System.out.println("Молись! С таким ветром зонт бессилен...");
+                }
+            }else {
+                if (wind_speed < 10){
+                    System.out.println("Кайфовая погодка, чтобы прогуляться");
+                } else {
+                    System.out.println("Ветер мощщный! Рекламнй щит башка упадет, совсем мёртвй будешь(((");
+                }
+            }
+        }
+
+        if (tempirature > 30){
+            if (rain > 1){
+                if (wind_speed < 10){
+                    System.out.println("Лёгкий дождик приятно освежит в столь жаркий день)");
+                }else {
+                    System.out.println("Молись! С таким ветром зонт бессилен...А дезик с такой жарой...");
+                }
+            }else {
+                if (wind_speed < 10){
+                    System.out.println("Кайфовая погодка, чтобы прогуляться) Но вот крем от загара и кепку, я бы захвтил");
+                } else {
+                    System.out.println("Ветер мощщный! Рекламнй щит башка упадет, совсем мёртвй будешь(((");
+                }
+            }
+        }
+    }
+}
